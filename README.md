@@ -4,6 +4,7 @@ WordPress.com and Self-hosted WordPress.
 
 ## For Self-hosted WordPress
 You must install WP OAuth Server plugin.
+
 https://wordpress.org/plugins/oauth2-provider/
 
 ## Installation
@@ -13,7 +14,7 @@ composer require revolution/socialite-wordpress
 
 ### config/services.php
 
-```
+```php
     'wordpress' => [
         // Endpoint for WordPress.com
         // 'host'          => env('WORDPRESS_HOST', 'https://public-api.wordpress.com/oauth2'),
@@ -75,4 +76,5 @@ https://github.com/kawax/socialite-project
 
 ## LICENCE
 MIT
+
 Copyright kawax
