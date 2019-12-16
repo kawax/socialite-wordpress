@@ -7,6 +7,9 @@ You must install WP OAuth Server plugin.
 
 https://wordpress.org/plugins/oauth2-provider/
 
+## Requirements
+- PHP >= 7.2
+
 ## Installation
 ```
 composer require revolution/socialite-wordpress

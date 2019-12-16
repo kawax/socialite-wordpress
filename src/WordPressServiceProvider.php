@@ -2,10 +2,10 @@
 
 namespace Revolution\Socialite\WordPress;
 
-use Laravel\Socialite\SocialiteServiceProvider;
+use Illuminate\Support\ServiceProvider;
 use Laravel\Socialite\Facades\Socialite;
 
-class WordPressServiceProvider extends SocialiteServiceProvider
+class WordPressServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the service provider.
