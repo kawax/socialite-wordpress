@@ -29,7 +29,7 @@ class WordPressProvider extends AbstractProvider implements ProviderInterface
      */
     protected function getAuthUrl($state)
     {
-        $url = Config::get('services.wordpress.host') . '/authorize';
+        $url = Config::get('services.wordpress.host').'/authorize';
 
         return $this->buildAuthUrlFromBase($url, $state);
     }
@@ -39,7 +39,7 @@ class WordPressProvider extends AbstractProvider implements ProviderInterface
      */
     protected function getTokenUrl()
     {
-        return Config::get('services.wordpress.host') . '/token';
+        return Config::get('services.wordpress.host').'/token';
     }
 
     /**
@@ -48,11 +48,11 @@ class WordPressProvider extends AbstractProvider implements ProviderInterface
     protected function getUserByToken($token)
     {
         $response = $this->getHttpClient()
-                         ->get(Config::get('services.wordpress.api_me'), [
-                             'headers' => [
-                                 'Authorization' => 'Bearer ' . $token,
-                             ],
-                         ]);
+            ->get(Config::get('services.wordpress.api_me'), [
+                'headers' => [
+                    'Authorization' => 'Bearer '.$token,
+                ],
+            ]);
 
         return json_decode($response->getBody(), true);
     }
@@ -63,11 +63,11 @@ class WordPressProvider extends AbstractProvider implements ProviderInterface
     protected function mapUserToObject(array $user)
     {
         return (new User())->setRaw($user)->map([
-            'id'       => (int)$user['ID'],
+            'id' => (int) $user['ID'],
             'nickname' => Arr::get($user, 'display_name'),
-            'name'     => Arr::get($user, 'username', Arr::get($user, 'user_login')),
-            'email'    => Arr::get($user, 'email', Arr::get($user, 'user_email')),
-            'avatar'   => Arr::get($user, 'avatar_URL'),
+            'name' => Arr::get($user, 'username', Arr::get($user, 'user_login')),
+            'email' => Arr::get($user, 'email', Arr::get($user, 'user_email')),
+            'avatar' => Arr::get($user, 'avatar_URL'),
         ]);
     }
 

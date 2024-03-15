@@ -3,11 +3,9 @@
 namespace Tests;
 
 use Mockery as m;
-
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Config;
-
 use Revolution\Socialite\WordPress\WordPressProvider;
 
 class SocialiteTest extends TestCase

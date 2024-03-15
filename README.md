@@ -8,7 +8,9 @@ You must install WP OAuth Server plugin.
 https://wordpress.org/plugins/oauth2-provider/
 
 ## Requirements
-- PHP >= 7.2
+- PHP >= 8.0
+
+> No version restrictions. It may stop working in future versions.
 
 ## Installation
 ```
@@ -45,9 +47,9 @@ WORDPRESS_REDIRECT=
 ## Usage
 
 routes/web.php
-```
-Route::get('login', 'SocialiteController@login');
-Route::get('callback', 'SocialiteController@callback');
+```php
+Route::get('login', [SocialiteController::class, 'login']);
+Route::get('callback', [SocialiteController::class, 'callback']);
 ```
 
 SocialiteController
