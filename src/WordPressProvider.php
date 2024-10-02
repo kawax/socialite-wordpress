@@ -70,14 +70,4 @@ class WordPressProvider extends AbstractProvider implements ProviderInterface
             'avatar' => Arr::get($user, 'avatar_URL'),
         ]);
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getTokenFields($code)
-    {
-        return array_merge(parent::getTokenFields($code), [
-            'grant_type' => 'authorization_code',
-        ]);
-    }
 }
