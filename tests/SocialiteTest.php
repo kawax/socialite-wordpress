@@ -10,19 +10,19 @@ use Revolution\Socialite\WordPress\WordPressProvider;
 
 class SocialiteTest extends TestCase
 {
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         m::close();
     }
 
-    public function testInstance()
+    public function test_instance()
     {
         $provider = Socialite::driver('wordpress');
 
         $this->assertInstanceOf(WordPressProvider::class, $provider);
     }
 
-    public function testRedirect()
+    public function test_redirect()
     {
         $request = Request::create('foo');
         $request->setLaravelSession($session = m::mock('Illuminate\Contracts\Session\Session'));
