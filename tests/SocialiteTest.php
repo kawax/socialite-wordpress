@@ -3,7 +3,6 @@
 namespace Tests;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Config;
 use Laravel\Socialite\Facades\Socialite;
 use Mockery as m;
 use Revolution\Socialite\WordPress\WordPressProvider;
@@ -13,6 +12,8 @@ class SocialiteTest extends TestCase
     protected function tearDown(): void
     {
         m::close();
+
+        parent::tearDown();
     }
 
     public function test_instance()
@@ -27,8 +28,6 @@ class SocialiteTest extends TestCase
         $request = Request::create('foo');
         $request->setLaravelSession($session = m::mock('Illuminate\Contracts\Session\Session'));
         $session->shouldReceive('put')->once();
-
-        Config::shouldReceive('get')->once()->with('services.wordpress.host')->andReturn('http://localhost');
 
         $provider = new WordPressProvider($request, 'client_id', 'client_secret', 'redirect');
         $response = $provider->redirect();

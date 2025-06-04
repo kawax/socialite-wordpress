@@ -7,7 +7,7 @@ use Revolution\Socialite\WordPress\WordPressServiceProvider;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [
             SocialiteServiceProvider::class,
@@ -15,7 +15,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
         ];
     }
 
-    protected function getPackageAliases($app)
+    protected function getPackageAliases($app): array
     {
         return [
             //
@@ -28,14 +28,24 @@ class TestCase extends \Orchestra\Testbench\TestCase
      * @param  \Illuminate\Foundation\Application  $app
      * @return void
      */
-    protected function getEnvironmentSetUp($app)
+    protected function getEnvironmentSetUp($app): void
     {
         $app['config']->set('services.wordpress',
             [
+                'host' => 'http://localhost',
+                'api_me' => 'http://localhost/me/',
                 'client_id' => 'test',
                 'client_secret' => 'test',
                 'redirect' => 'http://localhost',
-            ]
+            ],
         );
+
+        // Setup default database to use sqlite :memory:
+        $app['config']->set('database.default', 'testbench');
+        $app['config']->set('database.connections.testbench', [
+            'driver' => 'sqlite',
+            'database' => ':memory:',
+            'prefix' => '',
+        ]);
     }
 }

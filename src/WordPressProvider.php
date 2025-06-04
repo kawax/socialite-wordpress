@@ -27,7 +27,7 @@ class WordPressProvider extends AbstractProvider implements ProviderInterface
     /**
      * {@inheritdoc}
      */
-    protected function getAuthUrl($state)
+    protected function getAuthUrl($state): string
     {
         $url = Config::get('services.wordpress.host').'/authorize';
 
@@ -37,7 +37,7 @@ class WordPressProvider extends AbstractProvider implements ProviderInterface
     /**
      * {@inheritdoc}
      */
-    protected function getTokenUrl()
+    protected function getTokenUrl(): string
     {
         return Config::get('services.wordpress.host').'/token';
     }
@@ -60,7 +60,7 @@ class WordPressProvider extends AbstractProvider implements ProviderInterface
     /**
      * {@inheritdoc}
      */
-    protected function mapUserToObject(array $user)
+    protected function mapUserToObject(array $user): User
     {
         return (new User)->setRaw($user)->map([
             'id' => (int) $user['ID'],
